@@ -42,7 +42,6 @@ def download_page():
     print('DEBUG1') # This one gets printed to the console
     print(f'{request.form}')
     print(files)
-    send_from_directory(app.config['UPLOAD_FOLDER'], 'index.html')
     return create_buttons(files)
 
 
