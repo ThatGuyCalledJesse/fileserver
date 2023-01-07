@@ -6,4 +6,5 @@ def create_buttons(files: list[str]):
             <input type=submit value="{file}" name="{file}"
             </form>\n
         """
+    print(html_string)
     return html_string
