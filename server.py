@@ -24,10 +24,12 @@ def home():
 <p>This is the homepage, go to /upload or /download</p>    
 """
 
+
 @app.route('/list')
 def list_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     return files
+
 
 @app.route('/download', methods=['GET', 'POST'])
 def download_page():
