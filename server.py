@@ -3,15 +3,18 @@ from werkzeug.utils import secure_filename
 from clear_files import clear_files
 import os
 
+
 # Function declarations
 def send_from_directory(directory: str, filename: str):
     file = send_file(os.path.join(directory, filename), as_attachment=True)
     os.system(f'rm uploads/{filename}')
     return file
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'admin'
 app.config['UPLOAD_FOLDER'] = 'uploads'
+
 
 @app.route('/')
 def home():
@@ -20,14 +23,17 @@ def home():
 <p>This is the homepage, go to /upload or /download</p>    
 """
 
+
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 @app.route('/download')
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     return f'<p>{files}</p>'
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -64,6 +70,7 @@ def upload_file():
     </form>
     <h1>The site is supposed to crash after clear, might fix it one day</h1>
     '''
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
