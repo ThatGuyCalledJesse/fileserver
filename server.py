@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, send_from_directory, send_file
+from flask import Flask, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
 import os
@@ -33,6 +33,7 @@ def download_page():
 def upload_file():
     if request.form.get('clear') == 'Clear Files':
         clear_files()
+        return '<h1>Files Cleared</h1>'
     else:
         if request.method == 'POST':
             # check if the post request has the file part
