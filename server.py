@@ -26,7 +26,7 @@ def home():
 
 @app.route('/list')
 def list_page():
-    files = os.listdir(app.config['UPLOAD_FOLDER']
+    files = os.listdir(app.config['UPLOAD_FOLDER'])
     return files
 
 @app.route('/download', methods=['GET', 'POST'])
