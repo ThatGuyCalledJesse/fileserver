@@ -1,7 +1,9 @@
-from flask import Flask, request, redirect, url_for, send_file
+from flask import Flask, request, redirect, url_for, send_file, flash
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
+from buttons import create_buttons
 import os
+
 
 # Function declarations
 def send_from_directory(directory: str, filename: str):
@@ -9,9 +11,11 @@ def send_from_directory(directory: str, filename: str):
     os.system(f'rm uploads/{filename}')
     return file
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'admin'
 app.config['UPLOAD_FOLDER'] = 'uploads'
+
 
 @app.route('/')
 def home():
@@ -20,14 +24,27 @@ def home():
 <p>This is the homepage, go to /upload or /download</p>    
 """
 
+
+@app.route('/list')
+def list_files():
+    files = os.listdir(app.config['UPLOAD_FOLDER'])
+    return files
+
+
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-@app.route('/download')
+
+@app.route('/download', methods=['GET', 'POST'])
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
-    return f'<p>{files}</p>'
+    if request.method == 'POST':
+        for file in files:
+            if request.form.get(f'{file}') == f'{file}':
+                return send_from_directory(app.config['UPLOAD_FOLDER'], f'{file}')
+    return create_buttons(files)
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -42,7 +59,7 @@ def upload_file():
                 return redirect(request.url)
             file = request.files['file']
             # if user does not select file, browser also
-            # submit a empty part without filename
+            # submit an empty part without filename
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
@@ -64,6 +81,7 @@ def upload_file():
     </form>
     <h1>The site is supposed to crash after clear, might fix it one day</h1>
     '''
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
