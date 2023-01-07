@@ -33,7 +33,9 @@ def download_file(filename):
 @app.route('/download', methods=['GET', 'POST'])
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
-
+    for file in files:
+        if request.form.get(f'{file}') == f'{file}':
+            return send_from_directory(app.config['UPLOAD_FOLDER'], f'{file}')
     return create_buttons(files)
 
 
