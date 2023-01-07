@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, url_for, send_file, flash
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
+from buttons import create_buttons
 import os
 
 
@@ -32,7 +33,7 @@ def download_file(filename):
 @app.route('/download')
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
-    return f'<p>{files}</p>'
+    return create_buttons(files)
 
 
 @app.route('/upload', methods=['GET', 'POST'])
