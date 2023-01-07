@@ -1,0 +1,22 @@
+This is a step-by-step documentation on how I built FileServer.
+# Planning
+First I opened the Ubuntu text editor and started writing down some ideas, the best idea was the file server.
+Then I wrote down what packages would be required for a program like this (os, werkzeus.utils and flask).
+# Coding
+Then I started writing the code, first the imports (I added 1 extra function to remove all files from the server).
+Then I made a `send_from_directory` function that returns a file to an HTTP request.
+`import os
+from flask import send_file
+
+def send_from_directory(directory: str, filename: str):
+    # I struggled to remove the file from the system at first, but then decided to use this approach
+    file = send_file(os.path.join(directory, filename), as_attachment=True)
+    os.system(f'rm uploads/{filename}')
+    return file
+    ` And now I could return files to HTTP requests.
+Then I made the flask app and wrote the functions for the routes, implemented the `send_from_directory` function in the download_file route,
+added the upload route and added a button to remove all files from the server.
+# Resources
+I used google and `chat.openai.com` for some code snippets.
+# Recap
+Overall I would say this is a fun project to make, it took around half a day, so not too long.
