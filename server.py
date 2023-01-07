@@ -40,7 +40,7 @@ def download_file(filename):
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     for file in files:
-        if request.form.get(f'{file}') == f'{file}':
+        if request.form.get(f'{file}_name') == f'{file}_value':
             return send_from_directory(app.config['UPLOAD_FOLDER'], f'{file}')
     return create_buttons(files)
 
