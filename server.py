@@ -41,11 +41,9 @@ def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     print('DEBUG1') # This one gets printed to the console
     print(f'{request.form}')
-    if request.method == 'POST':
-        print('DEBUG2') # This one does not get printed to the console
-        for file in files:
-            if request.form.get(f'{file}') == f'{file}':
-                return send_from_directory('uploads', f'{file}')
+    print(files)
+    if request.form.get('index.html') == 'index.html':
+        send_from_directory(app.config['UPLOAD_FOLDER'], 'index.html')
     return create_buttons(files)
 
 
