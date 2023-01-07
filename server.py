@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, url_for, send_file, flash
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
+from buttons import create_buttons
 import os
 
 # Function declarations
@@ -24,10 +25,15 @@ def home():
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
-@app.route('/download')
+@app.route('/download', methods=['GET', 'POST'])
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
-    return f'<p>{files}</p>'
+    if request.method == 'POST':
+        for file in files:
+            if request.form.get(f'{file}') == f'{file}':
+                return send_from_directory(app.config['UPLOAD_FOLDER'], f'{file}')
+    return create_buttons(files)
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -42,7 +48,7 @@ def upload_file():
                 return redirect(request.url)
             file = request.files['file']
             # if user does not select file, browser also
-            # submit a empty part without filename
+            # submit an empty part without filename
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
