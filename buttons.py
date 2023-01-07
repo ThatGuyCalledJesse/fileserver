@@ -8,4 +8,7 @@ def create_buttons(files: list[str]):
         """
     print(html_string)
     return html_string
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
