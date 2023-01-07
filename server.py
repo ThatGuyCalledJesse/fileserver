@@ -25,6 +25,12 @@ def home():
 """
 
 
+@app.route('/list')
+def list_files():
+    files = os.listdir(app.config['UPLOAD_FOLDER'])
+    return files
+
+
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
