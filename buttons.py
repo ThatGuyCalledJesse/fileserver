@@ -4,6 +4,6 @@ def create_buttons(files: list[str]):
         html_string += f"""
         <form method=POST enctype=multipart/form-data>
             <input type=submit value="{file}" name="{file}"
-            </form>
+            </form>\n
         """
     return html_string
