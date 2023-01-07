@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, send_file
+from flask import Flask, request, redirect, url_for, send_file, flash
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
 import os
@@ -48,7 +48,7 @@ def upload_file():
                 return redirect(request.url)
             file = request.files['file']
             # if user does not select file, browser also
-            # submit a empty part without filename
+            # submit an empty part without filename
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
