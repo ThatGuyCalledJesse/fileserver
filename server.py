@@ -24,6 +24,10 @@ def home():
 <p>This is the homepage, go to /upload or /download</p>    
 """
 
+@app.route('/list')
+def list_page():
+    files = os.listdir(app.config['UPLOAD_FOLDER']
+    return files
 
 @app.route('/download', methods=['GET', 'POST'])
 def download_page():
@@ -42,13 +46,10 @@ def upload_file():
         return '<h1>Files Cleared</h1>'
     else:
         if request.method == 'POST':
-            # check if the post request has the file part
             if 'file' not in request.files:
                 flash('No file part')
                 return redirect(request.url)
             file = request.files['file']
-            # if user does not select file, browser also
-            # submit an empty part without filename
             if file.filename == '':
                 flash('No selected file')
                 return redirect(request.url)
