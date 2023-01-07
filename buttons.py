@@ -3,7 +3,7 @@ def create_buttons(files: list[str]):
     for file in files:
         html_string += f"""
 <form method=post enctype=multipart/form-data>
-<input type=submit value="{file}" name="{file}"
+<input type=submit value="{file}" name="{file}">
 </form>\n
         """
     print(html_string)
