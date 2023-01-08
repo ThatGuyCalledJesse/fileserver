@@ -1,6 +1,7 @@
 import os
 
-def clear_files() -> None:
+
+def clear_files() -> str:
     folder = '/home/pi/Scripts/FileServer/uploads'
     files = os.listdir(folder)
     for file in files:
