@@ -24,7 +24,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 def home():
     return """
 <h1>Homepage</h1>
-<p>This is the homepage, go to <a href="/upload">/uploads</a> or <a href="/download">/download</a></p>    
+<p>This is the homepage, go to <a href="/upload">/upload</a> or <a href="/download">/download</a></p>    
 """
 
 
