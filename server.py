@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, send_file, flash
+from flask import Flask, request, redirect, url_for, send_file, flash, render_template
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
 from buttons import create_buttons
@@ -74,7 +74,6 @@ def upload_file():
     <form method=post enctype=multipart/form-data>
       <input type=submit value='Clear Files' name='clear'>
     </form>
-    <h1>The site is supposed to crash after clear, might fix it one day</h1>
     '''
 
 
