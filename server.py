@@ -14,6 +14,9 @@ def send_from_directory(directory: str, filename: str):
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'admin'
+# creating uploads folder if it doesn't exist
+if not os.path.exists('uploads'):
+    os.mkdir(os.path.join(os.getcwd(), 'uploads'))
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 
@@ -21,7 +24,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 def home():
     return """
 <h1>Homepage</h1>
-<p>This is the homepage, go to /upload or /download</p>    
+<p>This is the homepage, go to <a href="/upload">/uploads</a> or <a href="/download">/download</a></p>    
 """
 
 
