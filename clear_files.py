@@ -2,7 +2,7 @@ import os
 
 
 def clear_files() -> str:
-    folder = '/home/pi/Scripts/FileServer/uploads'
+    folder = 'uploads'
     files = os.listdir(folder)
     for file in files:
         os.system(f'rm {folder}/{file}')
