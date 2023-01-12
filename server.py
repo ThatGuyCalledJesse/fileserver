@@ -12,7 +12,7 @@ def send_from_directory(directory: str, filename: str):
     return file
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = 'admin'
 # creating uploads folder if it doesn't exist
 if not os.path.exists('uploads'):
@@ -62,7 +62,7 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 return redirect(url_for('upload_file', filename=filename))
-        return render_template('index.html')
+        return render_template('upload.html')
 
 
 if __name__ == '__main__':
