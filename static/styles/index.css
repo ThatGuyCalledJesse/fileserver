@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+   font-family: 'Poppins', sans-serif;
+}
+.container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card {
+    position: relative;
+    border-radius: 15px !important;
+    
+}
+
