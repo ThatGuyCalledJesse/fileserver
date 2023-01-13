@@ -22,10 +22,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 
 @app.route('/')
 def home():
-    return """
-<h1>Homepage</h1>
-<p>This is the homepage, go to <a href="/upload">/upload</a> or <a href="/download">/download</a></p>    
-"""
+    return render_template("index.html")
 
 
 @app.route('/list')
@@ -66,4 +63,4 @@ def upload_file():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8000, debug=True)
