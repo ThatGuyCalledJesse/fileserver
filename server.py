@@ -25,12 +25,6 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/list')
-def list_page():
-    files = os.listdir(app.config['UPLOAD_FOLDER'])
-    return files
-
-
 @app.route('/download', methods=['GET', 'POST'])
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
