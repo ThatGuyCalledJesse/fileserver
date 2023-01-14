@@ -5,7 +5,7 @@ Then I wrote down what packages would be required for a program like this (os, w
 # Coding
 Then I started writing the code, first the imports (I added 1 extra function to remove all files from the server).
 Then I made a `send_from_directory` function that returns a file to an HTTP request.
-`import os
+```import os
 from flask import send_file
 
 def send_from_directory(directory: str, filename: str):
@@ -13,10 +13,11 @@ def send_from_directory(directory: str, filename: str):
     file = send_file(os.path.join(directory, filename), as_attachment=True)
     os.system(f'rm uploads/{filename}')
     return file
-    ` And now I could return files to HTTP requests.
+```
+And now I could return files to HTTP requests.
 Then I made the flask app and wrote the functions for the routes, implemented the `send_from_directory` function in the download_file route,
 added the upload route and added a button to remove all files from the server.
 # Resources
-I used google and `chat.openai.com` for some code snippets.
+I used Google and `chat.openai.com` for some code snippets.
 # Recap
 Overall I would say this is a fun project to make, it took around half a day, so not too long.
