@@ -17,6 +17,8 @@ def send_from_directory(directory: str, filename: str):
 And now I could return files to HTTP requests.
 Then I made the flask app and wrote the functions for the routes, implemented the `send_from_directory` function in the download_file route,
 added the upload route and added a button to remove all files from the server.
+Then I got a pull request for a change that would make it easier to use, it got merged and I wrote some more commits myself.
+Then I got another pull request for a CSS change that would beautify things (and it did).
 # Resources
 I used Google and `chat.openai.com` for some code snippets.
 # Recap
