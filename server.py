@@ -13,6 +13,7 @@ def send_from_directory(directory: str, filename: str):
     return file
 
 
+# Create an 'app' variable and set the static_folder to 'static'
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = 'admin'
 # creating uploads folder if it doesn't exist
