@@ -6,6 +6,7 @@ import os
 
 
 # Function declarations
+# This function takes a directory and a file as input and returns the file as an attachment for HTML
 def send_from_directory(directory: str, filename: str):
     file = send_file(os.path.join(directory, filename), as_attachment=True)
     os.system(f'rm uploads/{filename}')
@@ -20,11 +21,13 @@ if not os.path.exists('uploads'):
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 
+# This route and function creates the index.html template
 @app.route('/')
 def home():
     return render_template("index.html")
 
 
+# This route and function creates the download page and calls the create_buttons function for the HTML code
 @app.route('/download', methods=['GET', 'POST'])
 def download_page():
     files = os.listdir(app.config['UPLOAD_FOLDER'])
@@ -35,11 +38,14 @@ def download_page():
     return create_buttons(files)
 
 
+# This route and function creates the upload page and calls the clear file function
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
+    # If the post request is 'clear'
     if request.form.get('clear') == 'Clear Files':
+        # Then call clear_files and remove all cleared files
         clear_files()
-        return '<h1>Files Cleared</h1>'
+    # I actually have no idea what this code does, it was made by ChatGPT, so don't remove to prevent bugs
     else:
         if request.method == 'POST':
             if 'file' not in request.files:
@@ -56,5 +62,7 @@ def upload_file():
         return render_template('upload.html')
 
 
+# Run the app
 if __name__ == '__main__':
+    # On the Wi-Fi network and port 8000
     app.run(host='0.0.0.0', port=8000)
