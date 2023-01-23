@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div>
+    {% if files_number != 0 %}
+        {% for file in files %}
+            <div class="file-div">
+                <h1 class="file-title">Download the file: {{ file }}</h1>
+                <form method=post enctype=multipart/form-data>
+                    <input type=submit class="normal-btn" value="{{ file }}" name="{file}">
+                </form>
+            </div>
+        {% endfor %}
+        <div>
+            <h1 class="sub-title">Or you can also Upload and Clear Files: </h1>
+            <div style="margin: 2vw; text-align: center;">
+                <button class="normal-btn" style="background-color: aqua;"><a href="/clear" class="btn-normal-link">Clear
+                        Files</a></button>
+                <button class="normal-btn" style="background-color: rgb(251, 255, 2);"><a href="/download"
+                        class="btn-normal-link">Download Files</a></button>
+            </div>
+        </div>
+    {% else %}
+        <div style="margin-top: 8vw;">
+            <h1 class="sub-title">No Files to Download</h1>
+            <div style="margin: 2vw; text-align: center;">
+                <button class="normal-btn" style="background-color: aqua;"><a href="/upload" class="btn-normal-link">But you can Upload them</a></button>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

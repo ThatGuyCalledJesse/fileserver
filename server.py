@@ -15,7 +15,7 @@ def send_from_directory(directory: str, filename: str):
 
 # Create an 'app' variable and set the static_folder to 'static'
 app = Flask(__name__, static_folder='static')
-app.config['SECRET_KEY'] = 'admin'
+app.config['SECRET_KEY'] = 'thisshouldbesupersecuresoitshouldbefromenv'
 # creating uploads folder if it doesn't exist
 if not os.path.exists('uploads'):
     os.mkdir(os.path.join(os.getcwd(), 'uploads'))
@@ -36,34 +36,33 @@ def download_page():
         for file in files:
             if request.form.get(f'{file}') == f'{file}':
                 return send_from_directory(app.config['UPLOAD_FOLDER'], f'{file}')
-    return create_buttons(files)
+    return render_template("download.html", files=files, files_number=len(files))
 
 
 # This route and function creates the upload page and calls the clear file function
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
-    # If the post request is 'clear'
-    if request.form.get('clear') == 'Clear Files':
-        # Then call clear_files and remove all cleared files
-        clear_files()
-    # I actually have no idea what this code does, it was made by ChatGPT, so don't remove to prevent bugs
-    else:
-        if request.method == 'POST':
-            if 'file' not in request.files:
-                flash('No file part')
-                return redirect(request.url)
-            file = request.files['file']
-            if file.filename == '':
-                flash('No selected file')
-                return redirect(request.url)
-            if file:
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                return redirect(url_for('upload_file', filename=filename))
-        return render_template('upload.html')
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            flash(f'Uploaded {filename} successfully', category="success")
+            return redirect(url_for('upload_file', filename=filename))
+    return render_template('upload.html')
 
+@app.route('/clear', methods=['GET'])
+def clear():
+    flash(f'Cleared all files successfully', category="success")
+    clear_files()
+    return redirect(url_for('home'))
 
-# Run the app
 if __name__ == '__main__':
     # On the Wi-Fi network and port 8000
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8000, debug=True)
