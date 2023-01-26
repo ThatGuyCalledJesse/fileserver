@@ -19,7 +19,12 @@ Then I made the flask app and wrote the functions for the routes, implemented th
 added the upload route and added a button to remove all files from the server.
 Then I got a pull request for a change that would make it easier to use, it got merged and I wrote some more commits myself.
 Then I got another pull request for a CSS change that would beautify things (and it did).
+# Automation
+To make FileServer easier to use I added two files, `start_server.sh` and `start_server.bat`,
+these files are used to run the program without having to set anything up yourself.
+If there is no venv found in the working directory the program will create it and install the required packages.
 # Resources
 I used Google and `chat.openai.com` for some code snippets.
 # Recap
-Overall I would say this is a fun project to make, it took around half a day, so not too long.
+Overall I would say this is a fun project to make, it took around half a day for the initial project, 
+but the entire project took a few weeks, but in the end it is done and I learned some new skills.
