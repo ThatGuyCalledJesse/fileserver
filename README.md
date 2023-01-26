@@ -1,6 +1,9 @@
 A server (made with Flask), that you can run and then upload files to.
 You can also download those files again, so that's cool.
 # Usage
-First run `pip install -r requirements.txt`.
-To use FileServer, run `start_server.sh` if you're on Linux, `start_server.bat` if you're on windows. The scripts should automatically set things up for further use.
-If you encounter any bugs, please submit an issue, I'll try to resolve them as quick as I can.
+If this is your first time running the server, or you lost the env folder, the server will set everything up for you,
+if not it will just run the server as usual. Usage for a specific OS is below this.
+# Windows
+If you're on windows, run `start_server.bat`.
+# Linux
+If you're on linux, run `start_server.sh`.
