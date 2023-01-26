@@ -10,6 +10,7 @@ if [ ! -d "$venv_name" ]; then
     python3 -m venv "$venv_name"
     # install the requirements
     pip install -r requirements.txt
+    pip install flask
     # activate the venv
     source "$venv_name/bin/activate"
     # run the server
