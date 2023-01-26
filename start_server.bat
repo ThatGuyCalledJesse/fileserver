@@ -1,7 +1,12 @@
 @echo off
-if not exist env_windows (
-    python -m venv env_windows
+if not exist env (
+    python -m venv env
+    set "venv_path=%cd%\env"
+    call %venv_path%\Scripts\activate.bat
     pip install -r requirements.txt
 )
-set "venv_path=%cd%\env_windows"
+else (
+set "venv_path=%cd%\env"
 call %venv_path%\Scripts\activate.bat
+)
+
