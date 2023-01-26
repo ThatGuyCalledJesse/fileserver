@@ -13,4 +13,3 @@ def clear_files() -> str:
         # Remove the file from the folder
         os.remove(f'{folder}/{file}')
     # Then return a message saying that all files are removed
-    return '<h1>Server files cleared</h1>'

@@ -46,6 +46,7 @@ def upload_file():
     if request.form.get('clear') == 'Clear Files':
         # Then call clear_files and remove all cleared files
         clear_files()
+        return "<h1>Files cleared!</h1>"
     # I actually have no idea what this code does, it was made by ChatGPT, so don't remove to prevent bugs
     else:
         if request.method == 'POST':
