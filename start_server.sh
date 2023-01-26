@@ -8,12 +8,15 @@ venv_name="env"
 if [ ! -d "$venv_name" ]; then
     # create a new venv
     python3 -m venv "$venv_name"
-    # Install the requirements
+    # install the requirements
     pip install -r requirements.txt
+    # activate the venv
+    source "$venv_name/bin/activate"
+    # run the server
+    python3 server.py
+else
+  # activate the venv
+  source "$venv_name/bin/activate"
+  # run the server
+  python3 server.py
 fi
-
-# activate the venv
-source "$venv_name/bin/activate"
-
-# run the server
-python3 server.py
