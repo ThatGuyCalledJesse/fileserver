@@ -4,9 +4,13 @@ if not exist env (
     set "venv_path=%cd%\env"
     call %venv_path%\Scripts\activate.bat
     pip install -r requirements.txt
+    python server.py
+
 )
 else (
 set "venv_path=%cd%\env"
 call %venv_path%\Scripts\activate.bat
+python server.py
+
 )
 
