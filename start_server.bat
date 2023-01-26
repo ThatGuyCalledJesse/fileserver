@@ -4,6 +4,7 @@ if not exist env (
     set "venv_path=%cd%\env"
     call %venv_path%\Scripts\activate.bat
     pip install -r requirements.txt
+    pip install flask
     python server.py
 
 )
