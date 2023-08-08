@@ -16,15 +16,14 @@
 
     </nav>
     
-    <div class="container">
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title font-weight-bold">Welcome to ThatGuyCalledJesseFS</h5>
-                <p class="card-text w-50 my-4 mx-auto">This is a simple file server that allows you to upload and download files.</p>
-                <a href="/upload" class="btn btn-primary">Upload a file</a>
-                <a href="/download" class="btn btn-primary">Download a file</a>
-            </div>
-        </div>
+    <div class="p-5 d-flex flex-column">
+    {%if files != None %}
+        {% for file in files %}
+            <a href="{{ url_for('download', filename=file) }}" class="btn btn-primary m-2 text-wrap" style="max-width: 200px; min-height: fit-content; text-wrap: wrap"><strong>download:</strong>{{ file }}</a>
+        {% endfor %}
+    {% else %}
+        <h1 class="text-center">There are no files upload, go to <a href="/upload">/upload</a> and upload some files.
+    {% endif %}
+    </div>
 </body>
-</html>
 </html>

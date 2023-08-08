@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, send_file, flash, render_template
+from flask import Flask, request, redirect, url_for, send_file, flash, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
 from buttons import create_buttons
@@ -29,14 +29,17 @@ def home():
 
 
 # This route and function creates the download page and calls the create_buttons function for the HTML code
-@app.route('/download', methods=['GET', 'POST'])
-def download_page():
+@app.route("/download", defaults={'filename': None})
+@app.route('/download/<filename>')
+def download(filename):
     files = os.listdir(app.config['UPLOAD_FOLDER'])
-    if request.method == 'POST':
-        for file in files:
-            if request.form.get(f'{file}') == f'{file}':
-                return send_from_directory(app.config['UPLOAD_FOLDER'], f'{file}')
-    return create_buttons(files)
+    if filename is None:
+        return render_template("download.jinja", files=files)
+    else:
+        if filename in files:
+            return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+        else:
+            return "File not found", 404
 
 
 # This route and function creates the upload page and calls the clear file function
