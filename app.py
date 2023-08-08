@@ -1,7 +1,6 @@
 from flask import Flask, request, redirect, url_for, send_file, flash, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 from clear_files import clear_files
-from buttons import create_buttons
 import os
 
 

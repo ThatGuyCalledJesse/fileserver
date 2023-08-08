@@ -19,7 +19,7 @@
     <div class="p-5 d-flex flex-column">
     {%if files != None %}
         {% for file in files %}
-            <a href="{{ url_for('download', filename=file) }}" class="btn btn-primary m-2 text-wrap" style="max-width: 200px; min-height: fit-content; text-wrap: wrap"><strong>download:</strong>{{ file }}</a>
+            <a href="{{ url_for('download', filename=file) }}" class="btn btn-primary m-2 text-wrap" style="max-width: 200px; min-height: fit-content; text-wrap: wrap"><strong>download: </strong>{{ file }}</a>
         {% endfor %}
     {% else %}
         <h1 class="text-center">There are no files upload, go to <a href="/upload">/upload</a> and upload some files.
