@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
-    <title>Homepage | ThatGuyCalledJesseFS</title>
-</head>
-<body class="position-relative w-100 h-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">ThatGuyCalledJesseFS</a>
-        </div>
+{% extends "base.jinja" %}
 
-    </nav>
-    
+
+
+{% block content %}
+
     <div class="p-5 d-flex flex-column">
     {%if files != None %}
         {% for file in files %}
@@ -24,6 +12,5 @@
     {% else %}
         <h1 class="text-center">There are no files upload, go to <a href="/upload">/upload</a> and upload some files.
     {% endif %}
-    </div>
-</body>
-</html>
+
+{% endblock %}

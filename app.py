@@ -24,7 +24,7 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 # This route and function creates the index.html template
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("index.jinja")
 
 
 # download route
@@ -64,7 +64,7 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 return redirect(url_for('upload_file', filename=filename))
-        return render_template('upload.html')
+        return render_template('upload.jinja')
 
 
 # Run the app
