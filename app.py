@@ -28,13 +28,15 @@ def home():
     return render_template("index.html")
 
 
-# This route and function creates the download page and calls the create_buttons function for the HTML code
+# download route
+# if you visit "/dowload" the route will return a list of all available files to downlaod
+# if you visite "/download/<filename>" the route will return the actual file for you to download
 @app.route("/download", defaults={'filename': None})
 @app.route('/download/<filename>')
 def download(filename):
     files = os.listdir(app.config['UPLOAD_FOLDER'])
     if filename is None:
-        return render_template("download.jinja", files=files)
+        return render_template("download.jinja", files=files) # rendering jinja template
     else:
         if filename in files:
             return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
