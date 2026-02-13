@@ -24,7 +24,7 @@ To make FileServer easier to use I added two files, `start_server.sh` and `start
 these files are used to run the program without having to set anything up yourself.
 If there is no venv found in the working directory the program will create it and install the required packages.
 # Resources
-I used Google and `chat.openai.com` for some code snippets.
+I used Google for some code snippets.
 # Recap
 Overall I would say this is a fun project to make, it took around half a day for the initial project, 
 but the entire project took a few weeks, but in the end it is done and I learned some new skills.
