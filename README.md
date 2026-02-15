@@ -8,4 +8,4 @@ If you're on windows, run `start_server.bat`.
 # Linux
 If you're on linux, run `start_server.sh`.
 # Mac
-If you're on Mac, you're out of luck. It's not supported yet.
+If you're on Mac, you're out of luck. It's not supported.
