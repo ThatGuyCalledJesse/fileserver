@@ -13,7 +13,7 @@ def send_from_directory(directory: str, filename: str):
     return file
 
 
-# Create an 'app' variable and set the static_folder to 'static'
+# Create an 'app' variable and set the static_folder to 'static', this folder is where the css is located
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = 'admin'
 # creating uploads folder if it doesn't exist
@@ -22,7 +22,7 @@ if not os.path.exists('uploads'):
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 
-# This route and function creates the index.html template
+# This route and function creates the index.html template, the homepage of the project
 @app.route('/')
 def home():
     return render_template("index.html")
@@ -45,7 +45,7 @@ def upload_file():
     # If the post request is 'clear'
     if request.form.get('clear') == 'Clear Files':
         # Then call clear_files and remove all cleared files
-        clear_files()
+        clear_files() # I forgot to write comments for the code after this point
         return "<h1>Files cleared!</h1>"
     else:
         if request.method == 'POST':
